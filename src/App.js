@@ -5,6 +5,8 @@ import { getSVG } from "./http";
 import { ShowSVG } from "./components/ShowSVG";
 import html2canvas from "html2canvas";
 import { Sign } from "./components/Sign";
+import { ShowImg } from "./components/ShowImg";
+import { replace, maps } from "./model/SvgMap";
 window['html2canvas'] = html2canvas;
 
 const urls = ["a1.svg", "a2.svg", "a3.svg"].map(
@@ -20,10 +22,12 @@ class App extends Component {
 
     reqs.forEach(async (req, i) => {
       let svg = await req;
+      svg = replace(svg, maps[i]);
       this.setSVG(svg, i);
     });
   }
   setSVG(svg, i) {
+    // svg = svg.replace(/>(#)(?=<\/tspan>)/gi, )
     this.setState(({ files }) => {
       let f = files.slice();
       f[i] = svg;
@@ -37,8 +41,11 @@ class App extends Component {
         {/* {this.state.files.map((f, i) => (
           <ShowSVG key={i} svg={f} />
         ))} */}
-        <img src={urls[0]}></img>
-        <img src={urls[1]}></img>
+        {
+          this.state.files.slice(0, -1).map((f, i) => <ShowImg key={i} svg={f}></ShowImg>)
+        }
+        {/* <img src={urls[0]}></img>
+        <img src={urls[1]}></img> */}
         {this.state.files[2] && <ShowSVG svg={this.state.files[2]}></ShowSVG>}
         {/* <object type="image/svg+xml" data={urls[2]} id="svg-object"></object> */}
         <Sign></Sign>

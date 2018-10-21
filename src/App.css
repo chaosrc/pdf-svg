@@ -30,3 +30,12 @@
     transform: rotate(360deg);
   }
 }
+.svg-container > svg{
+  width: 100%;
+  height: auto;
+}
+img{
+  display: block;
+  width: 100%;
+  height: auto;
+}

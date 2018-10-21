@@ -17,7 +17,7 @@ export class ShowSVG extends React.Component {
 
     render(){
         return(
-            <div ref={this.divRef}></div>
+            <div ref={this.divRef} className="svg-container"></div>
         )
     }
 }
