@@ -14,7 +14,8 @@ const urls = ["a1.svg", "a2.svg", "a3.svg"].map(
 );
 class App extends Component {
   state = {
-    files: []
+    files: [],
+    sign: ''
   };
 
   async componentDidMount() {
@@ -46,9 +47,9 @@ class App extends Component {
         }
         {/* <img src={urls[0]}></img>
         <img src={urls[1]}></img> */}
-        {this.state.files[2] && <ShowSVG svg={this.state.files[2]}></ShowSVG>}
+        {this.state.files[2] && <ShowSVG signData={this.state.sign} svg={this.state.files[2]} onClick={() => this.setState({sign: 'hello'})}></ShowSVG>}
         {/* <object type="image/svg+xml" data={urls[2]} id="svg-object"></object> */}
-        <Sign></Sign>
+        <Sign ></Sign>
       </div>
     );
   }

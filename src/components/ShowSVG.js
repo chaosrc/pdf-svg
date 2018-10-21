@@ -19,14 +19,27 @@ function createSignPlaceholder(id, height, width){
 export class ShowSVG extends React.Component {
     divRef = React.createRef();
     signEle;
+    placeholder;
+    state = {
+        signData: ''
+    }
 
-    showSVG(){
+    static getDerivedStateFromProps(nextProps, prevState){
+        if(nextProps.signData !== prevState.signData){
+            return {
+                signData: nextProps.signData
+            }
+        }
+        return null;
+    }
+
+    showSVG = () => {
         let div = this.divRef.current;
         if(div){
             div.innerHTML = this.props.svg;
         }
     }
-    getSignEle(){
+    getSignEle = () => {
         let div = this.divRef.current;
         [...div.querySelectorAll('text tspan')].forEach(s => {
             if(s.textContent === 'sign'){
@@ -35,15 +48,27 @@ export class ShowSVG extends React.Component {
             }
         })
     }
+    addSign = () => {
+        console.log('add sign')
+        this.placeholder.innerHTML = '<text text-anchor="middle"  x="50%" y="50%" alignment-baseline="middle" fill="red" >姓名</text>'
+    }
 
-    addPlacehoder(){
+    addPlacehoder = () =>{
         let svg = createSignPlaceholder('mysign', '30', '60');
+        this.placeholder = svg;
+
         svg.setAttribute('x', this.signEle.getAttribute('x'));
         svg.setAttribute('y', parseFloat(this.signEle.getAttribute('y'))-15);
         this.divRef.current.children[0].appendChild(svg);
+        svg.addEventListener('click', () => this.handleClick())
     }
     removePlaceholder(){
         this.divRef.current.querySelector('#mysign').innerHTML = '';
+    }
+    handleClick = () => {
+        if(this.props.onClick){
+            this.props.onClick();
+        }
     }
 
     componentDidMount(){
@@ -51,6 +76,12 @@ export class ShowSVG extends React.Component {
         this.getSignEle();
         this.addPlacehoder();
     }
+    componentDidUpdate(prevProps, prevState){
+        if(prevProps.signData !== this.props.signData){
+            this.addSign();
+        }
+    }
+
 
     render(){
         return(
