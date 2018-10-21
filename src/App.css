@@ -47,3 +47,7 @@ img{
 .mr-10{
   margin-right: 10px;
 }
+.sign-canvas{
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+}

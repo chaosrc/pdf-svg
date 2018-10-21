@@ -47,11 +47,11 @@ class App extends Component {
           <ShowSVG key={i} svg={f} />
         ))} */}
         {
-          this.state.files.slice(0, -1).map((f, i) => <ShowImg key={i} svg={f}></ShowImg>)
+          // this.state.files.slice(0, -1).map((f, i) => <ShowImg key={i} svg={f}></ShowImg>)
         }
         {/* <img src={urls[0]}></img>
         <img src={urls[1]}></img> */}
-        {this.state.files[2] && <ShowSVG signData={this.state.sign} svg={this.state.files[2]} onClick={() => this.setState({showModal: true})}></ShowSVG>}
+        {/* {this.state.files[2] && <ShowSVG signData={this.state.sign} svg={this.state.files[2]} onClick={() => this.setState({showModal: true})}></ShowSVG>} */}
         {/* <object type="image/svg+xml" data={urls[2]} id="svg-object"></object> */}
         <Modal 
           animationType="up"
