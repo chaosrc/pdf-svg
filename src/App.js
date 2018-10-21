@@ -7,6 +7,9 @@ import html2canvas from "html2canvas";
 import { Sign } from "./components/Sign";
 import { ShowImg } from "./components/ShowImg";
 import { replace, maps } from "./model/SvgMap";
+import { Modal } from "antd-mobile";
+import 'antd-mobile/dist/antd-mobile.css'
+
 window['html2canvas'] = html2canvas;
 
 const urls = ["a1.svg", "a2.svg", "a3.svg"].map(
@@ -15,7 +18,8 @@ const urls = ["a1.svg", "a2.svg", "a3.svg"].map(
 class App extends Component {
   state = {
     files: [],
-    sign: ''
+    sign: '',
+    showModal: true
   };
 
   async componentDidMount() {
@@ -47,9 +51,16 @@ class App extends Component {
         }
         {/* <img src={urls[0]}></img>
         <img src={urls[1]}></img> */}
-        {this.state.files[2] && <ShowSVG signData={this.state.sign} svg={this.state.files[2]} onClick={() => this.setState({sign: 'hello'})}></ShowSVG>}
+        {this.state.files[2] && <ShowSVG signData={this.state.sign} svg={this.state.files[2]} onClick={() => this.setState({showModal: true})}></ShowSVG>}
         {/* <object type="image/svg+xml" data={urls[2]} id="svg-object"></object> */}
-        <Sign ></Sign>
+        <Modal 
+          animationType="up"
+          title="签名"
+          className="modal-wrapper"
+          visible={this.state.showModal} transparent maskClosable onClose={e => this.setState({showModal: false})}>
+
+          <Sign ></Sign>
+        </Modal>
       </div>
     );
   }

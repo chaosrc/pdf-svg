@@ -39,3 +39,11 @@ img{
   width: 100%;
   height: auto;
 }
+.modal-wrapper.am-modal{
+  width: 100%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.mr-10{
+  margin-right: 10px;
+}

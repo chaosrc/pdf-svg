@@ -3,8 +3,8 @@ import React from 'react';
 function createSignPlaceholder(id, height, width){
     let g = `
         <g>
-            <rect width="100%" height="100%" fill="white" stroke="red" stroke-width="5" stroke-dasharray="5"></rect>
-            <text text-anchor="middle"  x="50%" y="50%" alignment-baseline="middle" fill="red" >签名</text>
+            <rect width="100%" height="100%" fill="white" stroke="red" stroke-width="3" stroke-dasharray="3"></rect>
+            <text text-anchor="middle"  x="50%" y="50%" alignment-baseline="middle" fill="red" >添加签名</text>
         </g>
     `
     let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -54,7 +54,7 @@ export class ShowSVG extends React.Component {
     }
 
     addPlacehoder = () =>{
-        let svg = createSignPlaceholder('mysign', '30', '60');
+        let svg = createSignPlaceholder('mysign', '30', '80');
         this.placeholder = svg;
 
         svg.setAttribute('x', this.signEle.getAttribute('x'));
